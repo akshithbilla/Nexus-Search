@@ -37,56 +37,56 @@ const NavBar = () => {
         .catch(() => setDictionaryData(null)),
 
       axios
-        .get("http://localhost:2500/api/searchBooks", {
+        .get("https://nexus-search.onrender.com/api/searchBooks", {
           params: { query: searchQuery },
         })
         .then((res) => setBooks(res.data))
         .catch(() => setBooks([])),
 
       axios
-        .get("http://localhost:2500/api/searchNews", {
+        .get("https://nexus-search.onrender.com/api/searchNews", {
           params: { query: searchQuery },
         })
         .then((res) => setNews(res.data))
         .catch(() => setNews([])),
 
       axios
-        .get("http://localhost:2500/api/searchJobs", {
+        .get("https://nexus-search.onrender.com/api/searchJobs", {
           params: { query: searchQuery },
         })
         .then((res) => setJobs(res.data))
         .catch(() => setJobs([])),
 
       axios
-        .get("http://localhost:2500/api/searchMovies", {
+        .get("https://nexus-search.onrender.com/api/searchMovies", {
           params: { query: searchQuery },
         })
         .then((res) => setMovies(res.data))
         .catch(() => setMovies([])),
 
       axios
-        .get("http://localhost:2500/api/searchSong", {
+        .get("https://nexus-search.onrender.com/api/searchSong", {
           params: { query: searchQuery },
         })
         .then((res) => setSpotifySongs([res.data]))
         .catch(() => setSpotifySongs([])),
 
       axios
-        .get("http://localhost:2500/api/searchImages", {
+        .get("https://nexus-search.onrender.com/api/searchImages", {
           params: { query: searchQuery },
         })
         .then((res) => setImages(res.data))
         .catch(() => setImages([])),
 
       axios
-        .get("http://localhost:2500/api/searchRecipe", {
+        .get("https://nexus-search.onrender.com/api/searchRecipe", {
           params: { query: searchQuery },
         })
         .then((res) => setRecipes(res.data))
         .catch(() => setRecipes([])),
 
       axios
-        .get("http://localhost:2500/api/searchShopping", {
+        .get("https://nexus-search.onrender.com/api/searchShopping", {
           params: { query: searchQuery },
         })
         .then((res) => setShopping(res.data))
