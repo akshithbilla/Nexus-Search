@@ -32,6 +32,14 @@ const NavBar = () => {
     console.log("Search triggered with query:", searchQuery);
 
     const requests = [
+
+      axios
+      .get("https://nexus-search.onrender.com/api/fetchgoogleSearchResults", {
+        params: { query: searchQuery },
+      })
+      .then((res) => setAiData((prevData) => ({ ...prevData, google: res.data })))
+      .catch(() => setAiData((prevData) => ({ ...prevData, google: [] }))), 
+
       axios
         .get("https://nexus-search.onrender.com/api/searchDuckDuckGo", {
           params: { query: searchQuery },
@@ -158,31 +166,50 @@ const NavBar = () => {
 
       <div className="search-results">
         {/* AI Results */}
-        {category === "AI" && aiData && (
-          <div className="ai-results">
-            {aiData.wikipedia && (
-              <div className="ai-card">
-                <h2>{aiData.wikipedia.title}</h2>
-                <p>{aiData.wikipedia.extract}</p>
-                <img src={aiData.wikipedia.thumbnail} alt={aiData.wikipedia.title} />
-                <a href={aiData.wikipedia.page_url} target="_blank" rel="noopener noreferrer">
-                  Read more on Wikipedia
-                </a>
-              </div>
-            )}
-
-            {aiData.duckDuckGo && (
-              <div className="ai-card">
-                <h2>{aiData.duckDuckGo.title}</h2>
-                <p>{aiData.duckDuckGo.description}</p>
-                <img src={aiData.duckDuckGo.image} alt={aiData.duckDuckGo.title} />
-                <a href={aiData.duckDuckGo.source_url} target="_blank" rel="noopener noreferrer">
-                  Read more on DuckDuckGo
-                </a>
-              </div>
-            )}
+        {/* AI Results */}
+        
+{category === "AI" && aiData && (
+  <div className="ai-results">
+     {/* Wikipedia Results */}
+     {aiData.wikipedia && (
+      <div className="ai-card">
+        <h2>{aiData.wikipedia.title}</h2>
+        <p>{aiData.wikipedia.extract}</p>
+        <img src={aiData.wikipedia.thumbnail} alt={aiData.wikipedia.title} />
+        <a href={aiData.wikipedia.page_url} target="_blank" rel="noopener noreferrer">
+          Read more on Wikipedia
+        </a>
+      </div>
+    )}
+    {/* Google Search Results */}
+    {aiData.google && aiData.google.length > 0 && (
+      <div className="ai-card">
+        <h2>Google Search Results</h2>
+        {aiData.google.map((item, index) => (
+          <div key={index} className="search-result">
+            <h3><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a></h3>
+            <p>{item.snippet}</p>
           </div>
-        )}
+        ))}
+      </div>
+    )}
+
+   
+
+    {/* DuckDuckGo Results */}
+    {aiData.duckDuckGo && (
+      <div className="ai-card">
+        <h2>{aiData.duckDuckGo.title}</h2>
+        <p>{aiData.duckDuckGo.description}</p>
+        <img src={aiData.duckDuckGo.image} alt={aiData.duckDuckGo.title} />
+        <a href={aiData.duckDuckGo.source_url} target="_blank" rel="noopener noreferrer">
+          Read more on DuckDuckGo
+        </a>
+      </div>
+    )}
+  </div>
+)}
+
 
         {/* Dictionary Results */}
         {category === "home" && (
