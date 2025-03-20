@@ -16,6 +16,7 @@ const {fetchAIResponse} =require('./controllers/huggingaiController')
 const {searchWikipedia} =require('./controllers/wikiaiController')
 const {searchDuckDuckGo}  =require('./controllers/duckaiController')
 const {searchOpenAI} =require('./controllers/openaiController')
+const {fetchgoogleSearchResults} =require('./controllers/googleSearchController')
 
 //-----------------------------------------------------------------------------------
 const api = require('./routes/movies');
@@ -33,7 +34,7 @@ const huggingai=require('./routes/huggingai')
 const wikiai=require('./routes/wikiai')
 const duckai=require('./routes/duckai')
 const openai=require('./routes/openai')
-
+const googleSearch=require('./routes/googleSearch')
 const app = express();
 
 
@@ -61,7 +62,7 @@ app.use('/api/huggingai',huggingai)
 app.use('/api/wikiai',wikiai)
 app.use('/api/duckai',duckai)
 app.use('/api/openai',openai)
-
+app.use('/api/googlesearch',googleSearch)
 
 //-------------------------------------------------------------------------
 //app.use('/api/search', searchApi); // Add the search route
@@ -78,7 +79,7 @@ app.get('/api/fetchAIResponse',fetchAIResponse);
 app.get('/api/searchWikipedia',searchWikipedia)
 app.get('/api/searchDuckDuckGo',searchDuckDuckGo)
 app.get('/api/searchOpenAI',searchOpenAI)
-
+app.get('/api/fetchgoogleSearchResults',fetchgoogleSearchResults)
 
 app.get('/', (req, res) => {
   res.send("<h1>Connected</h1>");
