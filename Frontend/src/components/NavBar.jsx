@@ -14,7 +14,8 @@ const NavBar = () => {
   const [recipes, setRecipes] = useState([]);
   const [shopping, setShopping] = useState([]);
   const [dictionaryData, setDictionaryData] = useState(null);
-  const [category, setCategory] = useState("home");
+  const [aiData, setAiData] = useState(null);
+  const [category, setCategory] = useState("AI");
 
   // Apply theme on page load
   useEffect(() => {
@@ -31,6 +32,20 @@ const NavBar = () => {
     console.log("Search triggered with query:", searchQuery);
 
     const requests = [
+      axios
+        .get("https://nexus-search.onrender.com/api/searchDuckDuckGo", {
+          params: { query: searchQuery },
+        })
+        .then((res) => setAiData((prevData) => ({ ...prevData, duckDuckGo: res.data })))
+        .catch(() => setAiData((prevData) => ({ ...prevData, duckDuckGo: [] }))),
+
+      axios
+        .get("https://nexus-search.onrender.com/api/searchWikipedia", {
+          params: { query: searchQuery },
+        })
+        .then((res) => setAiData((prevData) => ({ ...prevData, wikipedia: res.data })))
+        .catch(() => setAiData((prevData) => ({ ...prevData, wikipedia: [] }))),
+
       axios
         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchQuery}`)
         .then((res) => setDictionaryData(res.data))
@@ -110,7 +125,7 @@ const NavBar = () => {
             <input
               type="text"
               className="search-bar"
-              placeholder="Search the web"
+              placeholder="Search anything"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSearch()}
@@ -126,6 +141,7 @@ const NavBar = () => {
 
         <div className="navbar-bottom">
           <ul className="navbar-menu">
+            <li onClick={() => setCategory("AI")}>AI</li>
             <li onClick={() => setCategory("home")}>Definition</li>
             <li onClick={() => setCategory("books")}>Books</li>
             <li onClick={() => setCategory("images")}>Images</li>
@@ -141,6 +157,33 @@ const NavBar = () => {
       </nav>
 
       <div className="search-results">
+        {/* AI Results */}
+        {category === "AI" && aiData && (
+          <div className="ai-results">
+            {aiData.wikipedia && (
+              <div className="ai-card">
+                <h2>{aiData.wikipedia.title}</h2>
+                <p>{aiData.wikipedia.extract}</p>
+                <img src={aiData.wikipedia.thumbnail} alt={aiData.wikipedia.title} />
+                <a href={aiData.wikipedia.page_url} target="_blank" rel="noopener noreferrer">
+                  Read more on Wikipedia
+                </a>
+              </div>
+            )}
+
+            {aiData.duckDuckGo && (
+              <div className="ai-card">
+                <h2>{aiData.duckDuckGo.title}</h2>
+                <p>{aiData.duckDuckGo.description}</p>
+                <img src={aiData.duckDuckGo.image} alt={aiData.duckDuckGo.title} />
+                <a href={aiData.duckDuckGo.source_url} target="_blank" rel="noopener noreferrer">
+                  Read more on DuckDuckGo
+                </a>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Dictionary Results */}
         {category === "home" && (
           <div className="dictionary-results">
