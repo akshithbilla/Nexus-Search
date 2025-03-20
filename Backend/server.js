@@ -12,7 +12,12 @@ const { searchImages } = require('./controllers/imagesController');
  const { searchRecipe } = require('./controllers/recipeController');
  const { searchShopping } = require('./controllers/shoppingController');
 const {searchSong}= require('./controllers/spotifyController')
+const {fetchAIResponse} =require('./controllers/huggingaiController')
+const {searchWikipedia} =require('./controllers/wikiaiController')
+const {searchDuckDuckGo}  =require('./controllers/duckaiController')
+const {searchOpenAI} =require('./controllers/openaiController')
 
+//-----------------------------------------------------------------------------------
 const api = require('./routes/movies');
 const newsApi = require('./routes/news');
 const weatherApi = require('./routes/weather');
@@ -24,15 +29,22 @@ const youtubeApi = require('./routes/youtubeApi');
 const spotifyApi = require('./routes/spotifyApi');
 const recipeApi = require('./routes/recipeApi');
 const placesApi = require('./routes/placesApi');
- 
+const huggingai=require('./routes/huggingai')
+const wikiai=require('./routes/wikiai')
+const duckai=require('./routes/duckai')
+const openai=require('./routes/openai')
 
 const app = express();
 
+
+
+//-------------------------------------------------------------------------------------
 // Middleware
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+//------------------------------------------------------------------------------------
 // Routes
 app.use('/api/weather', weatherApi);
 app.use('/api/movies', api);
@@ -45,7 +57,13 @@ app.use('/api/youtube', youtubeApi);
 app.use('/api/spotify', spotifyApi);
 app.use('/api/recipes', recipeApi);
 app.use('/api/places', placesApi);
+app.use('/api/huggingai',huggingai)
+app.use('/api/wikiai',wikiai)
+app.use('/api/duckai',duckai)
+app.use('/api/openai',openai)
 
+
+//-------------------------------------------------------------------------
 //app.use('/api/search', searchApi); // Add the search route
 app.get('/api/searchBooks', searchBooks);
 app.get('/api/searchImages', searchImages);
@@ -56,7 +74,10 @@ app.get('/api/searchPlaces', searchPlaces);
 app.get('/api/searchRecipe', searchRecipe);
 app.get('/api/searchShopping', searchShopping);
 app.get('/api/searchSong',searchSong)
-
+app.get('/api/fetchAIResponse',fetchAIResponse);
+app.get('/api/searchWikipedia',searchWikipedia)
+app.get('/api/searchDuckDuckGo',searchDuckDuckGo)
+app.get('/api/searchOpenAI',searchOpenAI)
 
 
 app.get('/', (req, res) => {
