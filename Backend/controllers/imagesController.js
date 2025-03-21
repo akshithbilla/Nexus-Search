@@ -1,8 +1,8 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const GOOGLE_IMAGES_API_KEY = process.env.SERA_API_KEY;
-const GOOGLE_IMAGES_API_URL = 'https://serpapi.com/search?engine=google_images';
+const PIXABAY_API_URL = 'https://pixabay.com/api/';
+const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 
 const searchImages = async (req, res) => {
     const { query } = req.query;
@@ -12,17 +12,19 @@ const searchImages = async (req, res) => {
     }
 
     try {
-        const response = await axios.get(GOOGLE_IMAGES_API_URL, {
+        const response = await axios.get(PIXABAY_API_URL, {
             params: {
+                key: PIXABAY_API_KEY,
                 q: query,
-                api_key: GOOGLE_IMAGES_API_KEY,
+                image_type: 'photo',
+                per_page: 10, // Number of images to fetch
             },
         });
 
-        const images = response.data.images_results.map(image => ({
-            title: image.title,
-            link: image.link,
-            thumbnail: image.thumbnail,
+        const images = response.data.hits.map(image => ({
+            title: image.tags,
+            link: image.largeImageURL,
+            thumbnail: image.previewURL,
         }));
 
         res.json(images);
