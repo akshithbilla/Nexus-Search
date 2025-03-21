@@ -17,7 +17,7 @@ const searchImages = async (req, res) => {
                 key: PIXABAY_API_KEY,
                 q: query,
                 image_type: 'photo',
-                per_page: 10, // Number of images to fetch
+                 
             },
         });
 
