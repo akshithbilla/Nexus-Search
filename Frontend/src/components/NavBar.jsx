@@ -154,17 +154,17 @@ const NavBar = () => {
 
         <div className="navbar-bottom">
           <ul className="navbar-menu">
-            <li onClick={() => setCategory("AI")}>AI</li>
-            <li onClick={() => setCategory("home")}>Definition</li>
-            <li onClick={() => setCategory("youtubeVideos")}>YouTube</li>
-            <li onClick={() => setCategory("images")}>Images</li>
-            <li onClick={() => setCategory("books")}>Books</li>
-            <li onClick={() => setCategory("shopping")}>Shopping</li>
+            <li onClick={() => setCategory("AI")}>Nexus AI</li>
+            <li onClick={() => setCategory("home")}>WordWise</li>
+            <li onClick={() => setCategory("youtubeVideos")}>VideoVault </li>
+            <li onClick={() => setCategory("images")}>PicSphere </li>
+            <li onClick={() => setCategory("books")}>PageQuest </li>
+            <li onClick={() => setCategory("shopping")}>ShopHunt </li>
              
-            <li onClick={() => setCategory("news")}>News</li>
-            <li onClick={() => setCategory("movie")}>Movie</li>
-            <li onClick={() => setCategory("jobs")}>Jobs</li>
-            <li onClick={() => setCategory("recipe")}>Recipe</li>
+            <li onClick={() => setCategory("news")}>HeadlineHub </li>
+            <li onClick={() => setCategory("movie")}>Cinema</li>
+            <li onClick={() => setCategory("jobs")}>WorkPath </li>
+            <li onClick={() => setCategory("recipe")}>FeastLab </li>
              
              
              
@@ -203,7 +203,7 @@ const NavBar = () => {
       </div>
     )}
 
-   
+    
 
     {/* DuckDuckGo Results */}
     {aiData.duckDuckGo && (
@@ -228,9 +228,12 @@ const NavBar = () => {
                 <div key={index} className="dictionary-entry">
                   <h2>{entry.word}</h2>
                   <p className="phonetic">{entry.phonetic || "N/A"}</p>
+                  <h2>Pronunciation</h2>
                   {entry.phonetics.map((phonetic, idx) => (
                     <div key={idx}>
+                      
                       {phonetic.audio && (
+                        
                         <audio controls>
                           <source src={phonetic.audio} type="audio/mpeg" />
                           Your browser does not support the audio element.
@@ -266,7 +269,7 @@ const NavBar = () => {
                   <img src={book.thumbnail} alt={book.title} />
                   <h3>{book.title}</h3>
                   <p>{book.authors.join(", ")}</p>
-                  <p>{book.description}</p>
+                  
                 </div>
               ))
             ) : (
@@ -276,30 +279,8 @@ const NavBar = () => {
         )}
 
 
-
-
-
-
-        {/* Images */}
-        {category === "images" && (
-          <div className="images-grid">
-            {images.length > 0 ? (
-              images.map((image, index) => (
-                <div key={index} className="image-card">
-                  <img src={image.thumbnail} alt={image.title} />
-                  <a href={image.link} target="_blank" rel="noopener noreferrer">
-                    View Image
-                  </a>
-                </div>
-              ))
-            ) : (
-              <p>No images found.</p>
-            )}
-          </div>
-        )}
-
-        {/* Jobs */}
-        {category === "jobs" && (
+{/* Jobs */}
+{category === "jobs" && (
           <div className="jobs-list">
             {jobs.length > 0 ? (
               jobs.map((job, index) => (
@@ -317,6 +298,28 @@ const NavBar = () => {
             )}
           </div>
         )}
+
+
+
+        {/* Images */}
+        {category === "images" && (
+          <div className="images-grid">
+            {images.length > 0 ? (
+              images.map((image, index) => (
+                <div key={index} className="image-card">
+                   <a href={image.link} target="_blank" rel="noopener noreferrer">
+                   <img src={image.thumbnail} alt={image.title} />
+                  </a>
+                  <h5>{image.title}</h5>
+                </div>
+              ))
+            ) : (
+              <p>No images found.</p>
+            )}
+          </div>
+        )}
+
+         
 
         {/* News */}
         {category === "news" && (
@@ -363,8 +366,11 @@ const NavBar = () => {
             {youtubeVideos.length > 0 ? (
               youtubeVideos.map((video, index) => (
                 <div key={index} className="youtube-card">
-                  <img src={video.thumbnail} alt={video.title} />
                   <h3>{video.title}</h3>
+                  <a href={video.link} target="_blank" rel="noopener noreferrer">
+                  <img src={video.thumbnail} alt={video.title} />
+                  </a>
+                   
                   <p>{video.description}</p>
                   <a href={video.link} target="_blank" rel="noopener noreferrer">
                     Watch Video
@@ -372,7 +378,7 @@ const NavBar = () => {
                 </div>
               ))
             ) : (
-              <p>No YouTube videos found.</p>
+              <p>No videos found.</p>
             )}
           </div>
         )}
