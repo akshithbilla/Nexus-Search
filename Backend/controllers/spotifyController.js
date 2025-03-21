@@ -42,7 +42,7 @@ const searchSong = async (req, res) => {
 
         const track = response.data.tracks.items[0];
 
-        const trackInfo = {
+        const tracks = response.data.tracks.items.map(track => ({
             title: track.name,
             artists: track.artists.map(artist => artist.name).join(', '),
             album: track.album.name,
@@ -52,9 +52,10 @@ const searchSong = async (req, res) => {
             preview_url: track.preview_url,
             external_urls: track.external_urls.spotify,
             images: track.album.images
-        };
-
-        res.json(trackInfo);
+        }));
+        
+        res.json({ tracks });
+        
     } catch (error) {
         console.error('Error:', error.message);
         if (error.response) {

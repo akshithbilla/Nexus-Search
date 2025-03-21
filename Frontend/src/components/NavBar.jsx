@@ -10,10 +10,11 @@ const NavBar = () => {
   const [jobs, setJobs] = useState([]);
   const [news, setNews] = useState([]);
   const [movie, setMovies] = useState([]);
-  const [spotifySongs, setSpotifySongs] = useState([]);
+  
   const [recipes, setRecipes] = useState([]);
   const [shopping, setShopping] = useState([]);
   const [dictionaryData, setDictionaryData] = useState(null);
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
   const [aiData, setAiData] = useState(null);
   const [category, setCategory] = useState("AI");
 
@@ -87,12 +88,8 @@ const NavBar = () => {
         .then((res) => setMovies(res.data))
         .catch(() => setMovies([])),
 
-      axios
-        .get("https://nexus-search.onrender.com/api/searchSong", {
-          params: { query: searchQuery },
-        })
-        .then((res) => setSpotifySongs([res.data]))
-        .catch(() => setSpotifySongs([])),
+        
+
 
       axios
         .get("https://nexus-search.onrender.com/api/searchImages", {
@@ -100,6 +97,14 @@ const NavBar = () => {
         })
         .then((res) => setImages(res.data))
         .catch(() => setImages([])),
+      
+      axios
+      .get(`https://nexus-search.onrender.com/api/youtube/search`, {
+        params: { query: searchQuery },
+      })
+      .then((res) => setYoutubeVideos(res.data))
+      .catch(() => setYoutubeVideos([])),
+      
 
       axios
         .get("https://nexus-search.onrender.com/api/searchRecipe", {
@@ -158,8 +163,8 @@ const NavBar = () => {
             <li onClick={() => setCategory("movie")}>Movie</li>
             <li onClick={() => setCategory("recipe")}>Recipe</li>
             <li onClick={() => setCategory("shopping")}>Shopping</li>
-            <li onClick={() => setCategory("YouTube")}>YouTube</li>
-            <li onClick={() => setCategory("Spotify")}>Spotify</li>
+            <li onClick={() => setCategory("youtubeVideos")}>YouTube</li>
+             
           </ul>
         </div>
       </nav>
@@ -266,6 +271,11 @@ const NavBar = () => {
           </div>
         )}
 
+
+
+
+
+
         {/* Images */}
         {category === "images" && (
           <div className="images-grid">
@@ -343,6 +353,31 @@ const NavBar = () => {
             )}
           </div>
         )}
+
+        {category === "youtubeVideos" && (
+          <div className="youtube-grid">
+            {youtubeVideos.length > 0 ? (
+              youtubeVideos.map((video, index) => (
+                <div key={index} className="youtube-card">
+                  <img src={video.thumbnail} alt={video.title} />
+                  <h3>{video.title}</h3>
+                  <p>{video.description}</p>
+                  <a href={video.link} target="_blank" rel="noopener noreferrer">
+                    Watch Video
+                  </a>
+                </div>
+              ))
+            ) : (
+              <p>No YouTube videos found.</p>
+            )}
+          </div>
+        )}
+       
+     
+  
+ 
+
+
 
         {/* Recipes */}
         {category === "recipe" && (
