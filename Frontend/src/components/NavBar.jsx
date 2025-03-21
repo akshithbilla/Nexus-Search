@@ -156,14 +156,17 @@ const NavBar = () => {
           <ul className="navbar-menu">
             <li onClick={() => setCategory("AI")}>AI</li>
             <li onClick={() => setCategory("home")}>Definition</li>
-            <li onClick={() => setCategory("books")}>Books</li>
+            <li onClick={() => setCategory("youtubeVideos")}>YouTube</li>
             <li onClick={() => setCategory("images")}>Images</li>
-            <li onClick={() => setCategory("jobs")}>Jobs</li>
+            <li onClick={() => setCategory("books")}>Books</li>
+            <li onClick={() => setCategory("shopping")}>Shopping</li>
+             
             <li onClick={() => setCategory("news")}>News</li>
             <li onClick={() => setCategory("movie")}>Movie</li>
+            <li onClick={() => setCategory("jobs")}>Jobs</li>
             <li onClick={() => setCategory("recipe")}>Recipe</li>
-            <li onClick={() => setCategory("shopping")}>Shopping</li>
-            <li onClick={() => setCategory("youtubeVideos")}>YouTube</li>
+             
+             
              
           </ul>
         </div>
@@ -178,18 +181,19 @@ const NavBar = () => {
      {/* Wikipedia Results */}
      {aiData.wikipedia && (
       <div className="ai-card">
+          
         <h2>{aiData.wikipedia.title}</h2>
         <p>{aiData.wikipedia.extract}</p>
-        <img src={aiData.wikipedia.thumbnail} alt={aiData.wikipedia.title} />
+        
         <a href={aiData.wikipedia.page_url} target="_blank" rel="noopener noreferrer">
-          Read more on Wikipedia
+        <img src={aiData.wikipedia.thumbnail} alt={aiData.wikipedia.title} />
         </a>
       </div>
     )}
     {/* Google Search Results */}
     {aiData.google && aiData.google.length > 0 && (
       <div className="ai-card">
-        <h2>Google Search Results</h2>
+        <h2>Nexus Search Results</h2>
         {aiData.google.map((item, index) => (
           <div key={index} className="search-result">
             <h3><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a></h3>
@@ -206,9 +210,9 @@ const NavBar = () => {
       <div className="ai-card">
         <h2>{aiData.duckDuckGo.title}</h2>
         <p>{aiData.duckDuckGo.description}</p>
-        <img src={aiData.duckDuckGo.image} alt={aiData.duckDuckGo.title} />
+        
         <a href={aiData.duckDuckGo.source_url} target="_blank" rel="noopener noreferrer">
-          Read more on DuckDuckGo
+        <img src={aiData.duckDuckGo.image} alt={aiData.duckDuckGo.title} />
         </a>
       </div>
     )}
