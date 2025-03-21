@@ -1,4 +1,4 @@
-/* General Styles */
+ 
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -12,15 +12,15 @@ body {
   min-height: 100vh;
 }
 
-/* Navbar Styles */
+ 
 .navbar {
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.9);  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px); /* Blur effect for modern look */
+  backdrop-filter: blur(10px);  
 }
 
 .navbar-top {
@@ -82,8 +82,7 @@ body {
 .theme-toggle:hover {
   background-color: #f1f1f1;
 }
-
-/* Navbar Bottom Styles */
+ 
 .navbar-bottom {
   margin-top: 10px;
 }
@@ -95,7 +94,7 @@ body {
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.8);  
   border-radius: 20px;
   padding: 10px;
 }
@@ -111,11 +110,11 @@ body {
 
 .navbar-menu li:hover {
   color: #1a73e8;
-  background-color: #d4d4d4; /* Semi-transparent hover background */
+  background-color: #d4d4d4;  
   border-radius: 20px;
 }
 
-/* Responsive Styles */
+ 
 @media (max-width: 768px) {
   .navbar-top {
     flex-direction: column;
@@ -155,16 +154,14 @@ body {
     font-size: 10px;
   }
 }
-
-/* Search Results Styles */
+ 
 .search-results {
   padding: 20px;
   flex-grow: 1;
 }
 
 
-
-/* Grid Layouts */
+ 
 .books-grid,
 .images-grid,
 .news-grid,
@@ -231,15 +228,14 @@ body {
   width: 100%;
   border-radius: 8px;
 }
-
-/* Dark Theme Styles */
+ 
 .dark-theme {
   background-color: #121212;
   color: #ffffff;
 }
 
 .dark-theme .navbar {
-  background-color: rgba(30, 30, 30, 0.9); /* Semi-transparent dark background */
+  background-color: rgba(30, 30, 30, 0.9);  
 }
 .dark-theme .logo {
   color: #bb86fc;
@@ -265,7 +261,7 @@ body {
 }
 
 .dark-theme .navbar-menu {
-  background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent dark background */
+  background-color: rgba(30, 30, 30, 0.8);  
 }
 
 .dark-theme .navbar-menu li {
@@ -274,7 +270,7 @@ body {
 
 .dark-theme .navbar-menu li:hover {
   color: #bb86fc;
-  /* Semi-transparent hover background */
+   
 }
 
 .dark-theme .ai-card, .dark-theme .dictionary-entry, .dark-theme .book-card, .dark-theme .job-card, .dark-theme .image-card, .dark-theme .news-card, .dark-theme .movie-card, .dark-theme .youtube-card, .dark-theme .recipe-card, .dark-theme .shopping-card {

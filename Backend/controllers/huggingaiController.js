@@ -1,11 +1,10 @@
 const axios = require('axios');
 const NodeCache = require('node-cache');
-require('dotenv').config(); // Load environment variables
-
+require('dotenv').config(); 
 const HF_API_KEY = process.env.HF_API_KEY;
 const HF_ENDPOINT_URL = 'https://vlzz10eq3fol3429.us-east-1.aws.endpoints.huggingface.cloud/v1/chat/completions'; 
 
-const cache = new NodeCache({ stdTTL: 3600 }); // Cache responses for 1 hour
+const cache = new NodeCache({ stdTTL: 3600 }); 
 
 const fetchAIResponse = async (req, res) => {
   const { query } = req.query;
@@ -13,8 +12,7 @@ const fetchAIResponse = async (req, res) => {
   if (!query) {
     return res.status(400).json({ error: 'Query parameter "query" is required' });
   }
-
-  // Check cache first
+ 
   const cachedResponse = cache.get(query);
   if (cachedResponse) {
     return res.json(cachedResponse);

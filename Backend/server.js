@@ -65,7 +65,7 @@ app.use('/api/openai',openai)
 app.use('/api/googlesearch',googleSearch)
 
 //-------------------------------------------------------------------------
-//app.use('/api/search', searchApi); // Add the search route
+ 
 app.get('/api/searchBooks', searchBooks);
 app.get('/api/searchImages', searchImages);
 app.get('/api/searchJobs', searchJobs);
@@ -84,8 +84,7 @@ app.get('/api/fetchgoogleSearchResults',fetchgoogleSearchResults)
 app.get('/', (req, res) => {
   res.send("<h1>Connected</h1>");
 });
-
-// Error Handling Middleware
+ 
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');

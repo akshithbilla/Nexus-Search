@@ -18,17 +18,17 @@ const NavBar = () => {
   const [aiData, setAiData] = useState(null);
   const [category, setCategory] = useState("AI");
 
-  // Apply theme on page load
+  
   useEffect(() => {
     document.body.className = theme === "light" ? "light-theme" : "dark-theme";
   }, [theme]);
 
-  // Toggle theme
+  
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  // Function to handle search
+  
   const handleSearch = async () => {
     console.log("Search triggered with query:", searchQuery);
 
@@ -173,12 +173,11 @@ const NavBar = () => {
       </nav>
 
       <div className="search-results">
-        {/* AI Results */}
-        {/* AI Results */}
+        
         
 {category === "AI" && aiData && (
   <div className="ai-results">
-     {/* Wikipedia Results */}
+     
      {aiData.wikipedia && (
       <div className="ai-card">
           
@@ -190,7 +189,7 @@ const NavBar = () => {
         </a>
       </div>
     )}
-    {/* Google Search Results */}
+     
     {aiData.google && aiData.google.length > 0 && (
       <div className="ai-card">
         <h2>Nexus Search Results</h2>
@@ -205,7 +204,7 @@ const NavBar = () => {
 
     
 
-    {/* DuckDuckGo Results */}
+     
     {aiData.duckDuckGo && (
       <div className="ai-card">
         <h2>{aiData.duckDuckGo.title}</h2>
@@ -220,7 +219,7 @@ const NavBar = () => {
 )}
 
 
-        {/* Dictionary Results */}
+       
         {category === "home" && (
           <div className="dictionary-results">
             {dictionaryData ? (
@@ -260,7 +259,7 @@ const NavBar = () => {
           </div>
         )}
 
-        {/* Books */}
+        
         {category === "books" && (
           <div className="books-grid">
             {books.length > 0 ? (
@@ -279,7 +278,7 @@ const NavBar = () => {
         )}
 
 
-{/* Jobs */}
+ 
 {category === "jobs" && (
           <div className="jobs-list">
             {jobs.length > 0 ? (
@@ -301,7 +300,7 @@ const NavBar = () => {
 
 
 
-        {/* Images */}
+        
         {category === "images" && (
           <div className="images-grid">
             {images.length > 0 ? (
@@ -321,7 +320,7 @@ const NavBar = () => {
 
          
 
-        {/* News */}
+         
         {category === "news" && (
           <div className="news-grid">
             {news.length > 0 ? (
@@ -342,7 +341,7 @@ const NavBar = () => {
           </div>
         )}
 
-        {/* Movies */}
+   
         {category === "movie" && (
           <div className="movie-details">
             {movie?.Title ? (
@@ -389,7 +388,7 @@ const NavBar = () => {
 
 
 
-        {/* Recipes */}
+     
         {category === "recipe" && (
           <div className="recipes-grid">
             {recipes.length > 0 ? (
@@ -406,7 +405,7 @@ const NavBar = () => {
           </div>
         )}
 
-        {/* Shopping */}
+        
         {category === "shopping" && (
           <div className="shopping-grid">
             {shopping.length > 0 ? (

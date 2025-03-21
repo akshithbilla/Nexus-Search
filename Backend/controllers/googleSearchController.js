@@ -18,8 +18,8 @@ const fetchgoogleSearchResults = async (req, res) => {
             params: {
                 key: GOOGLE_API_KEY,
                 cx: SEARCH_ENGINE_ID,
-                q: query,
-                num: 10 // Number of results
+                q: query
+                
             }
         });
 

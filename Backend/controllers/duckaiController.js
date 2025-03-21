@@ -1,8 +1,8 @@
 const axios = require('axios');
-const NodeCache = require('node-cache'); // Import caching library
+const NodeCache = require('node-cache');  
 
 const DUCKDUCKGO_API_URL = 'https://api.duckduckgo.com/';
-const cache = new NodeCache({ stdTTL: 3600 }); // Cache results for 1 hour
+const cache = new NodeCache({ stdTTL: 3600 }); 
 
 const searchDuckDuckGo = async (req, res) => {
   const { query } = req.query;
@@ -11,7 +11,7 @@ const searchDuckDuckGo = async (req, res) => {
     return res.status(400).json({ error: 'Query parameter "query" is required' });
   }
 
-  // Check cache first
+   
   const cachedResult = cache.get(query);
   if (cachedResult) {
     return res.json(cachedResult);
@@ -22,7 +22,7 @@ const searchDuckDuckGo = async (req, res) => {
       params: { q: query, format: 'json' },
     });
 
-    // Extract relevant details
+    
     const data = {
       title: response.data.Heading || query,
       description: response.data.Abstract || 'No description available',

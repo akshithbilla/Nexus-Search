@@ -1,9 +1,9 @@
 const axios = require('axios');
-const NodeCache = require('node-cache'); // Import a caching library
+const NodeCache = require('node-cache'); 
 
 const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
 const GOOGLE_BOOKS_API_URL = 'https://www.googleapis.com/books/v1/volumes';
-const cache = new NodeCache({ stdTTL: 3600 }); // Cache results for 1 hour
+const cache = new NodeCache({ stdTTL: 3600 });  
 
 const searchBooks = async (req, res) => {
   const { query } = req.query; 
@@ -12,7 +12,7 @@ const searchBooks = async (req, res) => {
     return res.status(400).json({ error: 'Query parameter "query" is required' });
   }
 
-  // Check the cache first
+  
   const cachedBooks = cache.get(query);
   if (cachedBooks) {
     return res.json(cachedBooks);
@@ -34,7 +34,7 @@ const searchBooks = async (req, res) => {
         thumbnail: item.volumeInfo.imageLinks?.thumbnail || 'No image available',
       }));
 
-      // Cache the result
+      
       cache.set(query, books);
 
       return res.json(books);
