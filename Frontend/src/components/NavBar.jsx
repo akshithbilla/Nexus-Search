@@ -154,7 +154,7 @@ const NavBar = () => {
 
         <div className="navbar-bottom">
           <ul className="navbar-menu">
-            <li onClick={() => setCategory("AI")}>Nexus AI</li>
+            <li onClick={() => setCategory("AI")}>Nexus Search</li>
             <li onClick={() => setCategory("home")}>WordWise</li>
             <li onClick={() => setCategory("youtubeVideos")}>VideoVault </li>
             <li onClick={() => setCategory("images")}>PicSphere </li>
